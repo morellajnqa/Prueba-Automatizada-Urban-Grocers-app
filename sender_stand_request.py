@@ -1,6 +1,5 @@
 import configuration
 import requests
-import json
 import data
 
 def post_new_user(body):
