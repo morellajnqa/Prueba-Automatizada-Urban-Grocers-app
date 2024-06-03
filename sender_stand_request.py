@@ -1,30 +1,22 @@
 import configuration
 import requests
 import data
+import copy
 
 def post_new_user(body):
     return requests.post(configuration.URL_SERVICE + configuration.CREATE_USER_PATH,  # inserta la dirección URL completa
                          json=body,  # inserta el cuerpo de solicitud
                          headers=data.headers)  # inserta los encabezados
 
-response = post_new_user(data.user_body)
-
-print(response.status_code)
-print(data.headers)
-
-if response.status_code == 201:
-    authToken= response.json()['authToken']
-    print('El token que obtuve fue: '+authToken)
-    #agregamos un authorization al header
-    data.headers['Authorization'] = 'Bearer ' + authToken
-else:
-    print(response.json())
-
-def post_kits(name):
+def get_auth_header ():
+    response = post_new_user(data.user_body)
+    if response.status_code == 201:
+        auth_header = copy.copy(data.headers)
+        auth_header['Authorization'] = 'Bearer ' + response.json()['authToken']
+        return auth_header
+    else:
+        return response
+def post_kits(name, auth_headers=data.headers):
     return requests.post(configuration.URL_SERVICE + configuration.KITS_PATH,
                          json=name,
-                         headers=data.headers)
-
-response = post_kits(data.kit_body);
-print(response.status_code)
-print(response.json())
+                         headers=auth_headers)

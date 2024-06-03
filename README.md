@@ -41,5 +41,5 @@ pytest .\create_kit_name_kit_test.py
 | 5	 |Se permiten caracteres especiales: kit_body = { "name": ""№%@"," }| Código de respuesta: 201 El campo "name" del cuerpo de la respuesta coincide con el campo "name" del cuerpo de la solicitud | Aprobada |
 | 6	 |Se permiten espacios: kit_body = { "name": " A Aaa " }| Código de respuesta: 201 El campo "name" del cuerpo de la respuesta coincide con el campo "name" del cuerpo de la solicitud | Aprobada |
 | 7	 |Se permiten números: kit_body = { "name": "123" }| Código de respuesta: 201 El campo "name" del cuerpo de la respuesta coincide con el campo "name" del cuerpo de la solicitud | Aprobada |
-| 8	 |El parámetro no se pasa en la solicitud: kit_body = { }| Código de respuesta: 400| Aprobada |
+| 8	 |El parámetro no se pasa en la solicitud: kit_body = { }| Código de respuesta: 400| No Aprobada |
 | 9	 |Se ha pasado un tipo de parámetro diferente (número): kit_body = { "name": 123 }| 	Código de respuesta: 400 | No Aprobada |

@@ -1,5 +1,6 @@
 import sender_stand_request
 import data
+
 def get_kit_body(name):
     current_body = data.kit_body.copy()
     current_body["name"] = name
@@ -7,24 +8,27 @@ def get_kit_body(name):
 
 def positive_assert(name):
     # El cuerpo de la solicitud actualizada se guarda en la variable user_body
+    auth_header = sender_stand_request.get_auth_header()
     kit_body = get_kit_body(name)
     # El resultado de la solicitud para crear un nuevo usuario o usuaria se guarda en la variable response
-    kit_response = sender_stand_request.post_kits(kit_body)
+    kit_response = sender_stand_request.post_kits(kit_body,auth_header)
     # Comprueba si el código de estado es 201
     assert kit_response.status_code == 201
     assert kit_response.json()['name'] == name
 
 def negative_assert(name):
     # El cuerpo de la solicitud actualizada se guarda en la variable user_body
+    auth_header = sender_stand_request.get_auth_header()
     kit_body = get_kit_body(name)
     # El resultado de la solicitud para crear un nuevo usuario o usuaria se guarda en la variable response
-    kit_response = sender_stand_request.post_kits(kit_body)
+    kit_response = sender_stand_request.post_kits(kit_body,auth_header)
     # Comprueba si el código de estado es 201
     assert kit_response.status_code == 400
     assert kit_response.json()['message'] == "No paso esta validacion"
 
 def negative_assert2(kit_body):
-    kit_response = sender_stand_request.post_kits(kit_body)
+    auth_header = sender_stand_request.get_auth_header()
+    kit_response = sender_stand_request.post_kits(kit_body,auth_header)
     # Comprueba si el código de estado es 201
     assert kit_response.status_code == 400
     assert kit_response.json()['message'] == "No paso esta validacion"
