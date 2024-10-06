@@ -1,7 +1,5 @@
 [![Tripleten](https://id.tripleten.com/resources/2jrb4/login/practicum-keycloakify/build/favicon-32x32.png)]()
 # Crear kit de productos en Urban Grocers
-## Sprint 7
-### Grupo 10
 #### Por: Morella Jiménez 
 
 ## Descripción del proyecto
